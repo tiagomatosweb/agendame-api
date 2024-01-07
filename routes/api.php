@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\User\MeController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', LoginController::class);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('me', [MeController::class, 'show']);
+});
