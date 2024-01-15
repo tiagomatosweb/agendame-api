@@ -14,8 +14,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
 Route::post('email', function() {
-    \Illuminate\Support\Facades\Mail::to('test@test.com')
-        ->send(new \App\Mail\WelcomeMail());
+    \App\Events\UserRegistered::dispatch();
 });
 
 
