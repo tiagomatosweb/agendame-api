@@ -11,3 +11,18 @@ Route::post('register', RegisterController::class);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('me', [MeController::class, 'show']);
 });
+
+
+Route::post('email', function() {
+    \Illuminate\Support\Facades\Mail::to('test@test.com')
+        ->send(new \App\Mail\WelcomeMail());
+});
+
+
+
+
+
+
+
+
+
