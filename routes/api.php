@@ -13,12 +13,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 
-Route::post('email', function() {
-    \App\Events\UserRegistered::dispatch();
-});
-
-
-
 
 
 

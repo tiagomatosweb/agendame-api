@@ -1,1 +1,1 @@
-Welcome!
+Welcome, {{ $user->first_name }}!
