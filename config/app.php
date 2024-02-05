@@ -56,6 +56,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'portal_url' => env('PORTAL_URL', 'http://localhost:3000'),
 
     'asset_url' => env('ASSET_URL'),
 

@@ -11,7 +11,7 @@
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tbody>
                     <tr>
-                        <td> <a href="http://htmlemail.io" target="_blank">Confirmar conta</a> </td>
+                        <td> <a href="{{ config('app.portal_url') }}/verificar-email?token={{ $user->token }}" target="_blank">Confirmar conta</a> </td>
                     </tr>
                     </tbody>
                 </table>
