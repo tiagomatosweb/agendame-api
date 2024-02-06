@@ -19,7 +19,6 @@ class VerifyEmailController extends Controller
      */
     public function __invoke(VerifyEmailRequest $request): UserResource
     {
-        sleep(2);
         $input = $request->validated();
 
         $user = User::query()
