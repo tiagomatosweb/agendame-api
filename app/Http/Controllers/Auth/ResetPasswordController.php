@@ -21,6 +21,7 @@ class ResetPasswordController extends Controller
 
         $token = PasswordResetToken::query()
             ->whereToken($input['token'])
+            ->whereDate('created_at', '>=', now()->subHours(24)->toDateTimeString())
             ->first();
 
         if (!$token) {
