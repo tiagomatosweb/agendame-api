@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use App\Traits\RenderToJson;
 use Exception;
 
-class InvalidTokenException extends Exception
+class InvalidEmailVerifyTokenException extends Exception
 {
     use RenderToJson;
 
