@@ -11,19 +11,19 @@ class TestController extends Controller
 {
     public function __invoke()
     {
-        $roleAdmin = Role::find(1);
-        $roleAtendente = Role::find(2);
+//        $roleAdmin = Role::find(1);
+//        $roleAtendente = Role::find(2);
 
         // Criando permissões
-         $permissionDeleteUser = Permission::find(1);
+//         $permissionDeleteUser = Permission::find(1);
 
         // Atribuindo permissão ao cargo
         // $roleAdmin->givePermissionTo($permissionDeleteUser);
 //        $roleAtendente->revokePermissionTo($permissionDeleteUser);
 
-        setPermissionsTeamId(1);
-
         // Pedro - dono da Dental Systems
+        $contexto = getPermissionsTeamId();
+        dd($contexto);
         $pedro = User::find(1);
 //        $pedro->assignRole($roleAtendente);
         dd($pedro->can('delete user'));
