@@ -15,20 +15,22 @@ class TestController extends Controller
         $roleAtendente = Role::find(2);
 
         // Criando permissões
-        // $permissionDeleteUser = Permission::create(['name' => 'delete user']);
+         $permissionDeleteUser = Permission::find(1);
 
         // Atribuindo permissão ao cargo
         // $roleAdmin->givePermissionTo($permissionDeleteUser);
+//        $roleAtendente->revokePermissionTo($permissionDeleteUser);
 
         setPermissionsTeamId(1);
 
         // Pedro - dono da Dental Systems
         $pedro = User::find(1);
-//        $pedro->assignRole($roleAdmin);
+//        $pedro->assignRole($roleAtendente);
         dd($pedro->can('delete user'));
 
         // Melisa - Não é nada
-        $melisa = User::find(2);
+//        $melisa = User::find(2);
+//        $melisa->assignRole('atendente');
 //        dd($melisa->can('delete user'));
     }
 }
