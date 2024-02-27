@@ -18,7 +18,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('me', [MeController::class, 'show']);
 });
 
-
+Route::get('test', \App\Http\Controllers\TestController::class);
 
 
 
