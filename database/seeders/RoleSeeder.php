@@ -15,11 +15,11 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-//        $roleManager = Role::create(['name' => 'gerente']);
-//        $permissionManager = Permission::create(['name' => 'delete user']);
-//        $roleManager->givePermissionTo($permissionManager);
+        $admin = Role::create(['name' => 'admin']);
+        Role::create(['name' => 'atendente']);
+        Role::create(['name' => 'cliente']);
 
-        $user = User::inRandomOrder()->first();
-        $user->assignRole('gerente');
+        $permissionDeleteUser = Permission::create(['name' => 'delete_user']);
+        $admin->givePermissionTo($permissionDeleteUser);
     }
 }
