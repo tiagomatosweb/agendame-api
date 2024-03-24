@@ -15,7 +15,7 @@ class TeamMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        setPermissionsTeamId(2);
+//        setPermissionsTeamId(2);
 
         return $next($request);
     }
