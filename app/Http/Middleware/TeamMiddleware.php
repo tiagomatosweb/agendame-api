@@ -2,6 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\MissingTeamException;
+use App\Exceptions\TeamDoesntExistException;
+use App\Exceptions\UserDoesntHaveRoleException;
 use App\Models\Team;
 use Closure;
 use Illuminate\Http\Request;
@@ -12,13 +15,15 @@ class TeamMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @throws MissingTeamException
+     * @throws TeamDoesntExistException
+     * @throws UserDoesntHaveRoleException
      */
     public function handle(Request $request, Closure $next): Response
     {
-        auth()->loginUsingId(10);
         if (!$request->headers->has('Team')) {
-            dd('error não tem team id');
+            throw new MissingTeamException();
         }
 
         $team = Team::query()
@@ -26,13 +31,13 @@ class TeamMiddleware
             ->first();
 
         if (!$team) {
-            dd('team não existe');
+            throw new TeamDoesntExistException();
         }
 
         setPermissionsTeamId($team->id);
 
         if (!auth()->user()->roles()->exists()) {
-            dd('não tenho cargo');
+            throw new UserDoesntHaveRoleException();
         }
 
         return $next($request);
