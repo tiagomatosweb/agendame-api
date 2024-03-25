@@ -18,6 +18,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('me', [MeController::class, 'show']);
 });
 
+Route::get('test', function() {
+    dd('test OK');
+});
+
 
 
 
