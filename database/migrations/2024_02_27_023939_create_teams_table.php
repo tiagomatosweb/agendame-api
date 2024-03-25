@@ -17,17 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
-
-        Schema::create('team_user', function (Blueprint $table) {
-            $table->foreignId('team_id')
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-            $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-        });
     }
 
     /**
@@ -35,7 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('team_user');
         Schema::dropIfExists('teams');
     }
 };
