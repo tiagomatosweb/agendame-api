@@ -40,6 +40,10 @@ class RegisterController extends Controller
         setPermissionsTeamId($team->id);
         $user->assignRole('admin');
 
+        // Set default team
+        $user->default_team_id = $team->id;
+        $user->save();
+
         UserRegistered::dispatch($user);
 
         return new UserResource($user);
