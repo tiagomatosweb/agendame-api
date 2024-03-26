@@ -24,6 +24,7 @@ class LoginController extends Controller
 
         request()->session()->regenerate();
 
-        return new UserResource(auth()->user());
+        $user = auth()->user();
+        return new UserResource($user);
     }
 }
