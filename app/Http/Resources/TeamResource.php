@@ -17,6 +17,7 @@ class TeamResource extends JsonResource
         return [
             'token' => $this->token,
             'name' => $this->name,
+            'default' => auth()->user()->default_team_id === $this->id,
         ];
     }
 }

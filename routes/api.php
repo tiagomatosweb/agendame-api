@@ -14,8 +14,12 @@ Route::post('verify-email', VerifyEmailController::class);
 Route::post('forgot-password', ForgotPasswordController::class);
 Route::post('reset-password', ResetPasswordController::class);
 
-Route::middleware(['auth:sanctum', 'team'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('me', [MeController::class, 'show']);
+
+    // Rotas que precisam de team
+    Route::middleware(['team'])->group(function () {
+    });
 });
 
 Route::middleware(['auth:sanctum', 'team'])->get('test', function() {
