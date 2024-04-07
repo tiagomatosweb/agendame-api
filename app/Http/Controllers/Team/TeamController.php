@@ -7,6 +7,7 @@ use App\Http\Requests\Team\TeamStoreRequest;
 use App\Http\Requests\Team\TeamUpdateRequest;
 use App\Http\Resources\TeamResource;
 use App\Models\Team;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
@@ -44,9 +45,12 @@ class TeamController extends Controller
      * @param Team $team
      * @param TeamUpdateRequest $request
      * @return TeamResource
+     * @throws AuthorizationException
      */
     public function update(Team $team, TeamUpdateRequest $request): TeamResource
     {
+        $this->authorize('update', $team);
+
         $input = $request->validated();
 
         $team->fill($input);
