@@ -58,4 +58,20 @@ class TeamController extends Controller
 
         return new TeamResource($team);
     }
+
+    /**
+     * @param Team $team
+     * @return void
+     * @throws AuthorizationException
+     */
+    public function destroy(Team $team): void
+    {
+        $this->authorize('destroy', $team);
+
+        \DB::table('model_has_roles')
+            ->where('team_id', $team->id)
+            ->delete();
+
+        $team->delete();
+    }
 }

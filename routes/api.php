@@ -20,6 +20,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('teams', [TeamController::class, 'index']);
     Route::post('teams', [TeamController::class, 'store']);
     Route::put('teams/{team:token}', [TeamController::class, 'update']);
+    Route::delete('teams/{team:token}', [TeamController::class, 'destroy']);
 
     // Rotas que precisam de team
     Route::middleware(['team'])->group(function () {
