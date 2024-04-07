@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Team;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Team\TeamStoreRequest;
+use App\Http\Requests\Team\TeamUpdateRequest;
 use App\Http\Resources\TeamResource;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -35,6 +36,21 @@ class TeamController extends Controller
         $user = auth()->user();
         setPermissionsTeamId($team->id);
         $user->assignRole('admin');
+
+        return new TeamResource($team);
+    }
+
+    /**
+     * @param Team $team
+     * @param TeamUpdateRequest $request
+     * @return TeamResource
+     */
+    public function update(Team $team, TeamUpdateRequest $request): TeamResource
+    {
+        $input = $request->validated();
+
+        $team->fill($input);
+        $team->save();
 
         return new TeamResource($team);
     }
